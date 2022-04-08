@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_example/bindings/example_page_binding.dart';
+import 'package:flutter_getx_example/bindings/home_hindings.dart';
+import 'package:flutter_getx_example/locales.dart';
 import 'package:flutter_getx_example/pages/button_example.dart';
 import 'package:flutter_getx_example/pages/home.dart';
 import 'package:flutter_getx_example/pages/not_found.dart';
@@ -18,14 +21,19 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'GetX',
       theme: ThemeData.light(),
+      initialBinding: HomeBindings(),
       initialRoute: "/",
+      translations: Locales(),
+      locale: Locale("en", "Us"),
+      fallbackLocale: Locale("en", "Us"),
       unknownRoute: GetPage(name: '/notfound', page: () => const NotFound()),
       defaultTransition: Transition.cupertino,
       getPages: [
-        GetPage(name: '/', page: () => HomePage()),
+        GetPage(name: '/', page: () => HomePage(), binding: HomeBindings()),
         GetPage(
             name: '/ButtonExample/:bilgi',
-            page: () => const ButtonExamplePage())
+            page: () => ButtonExamplePage(),
+            binding: ExamplePageBindings())
       ],
       home: HomePage(),
     );

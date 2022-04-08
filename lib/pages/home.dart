@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_example/controllers/counter_controller.dart';
 import 'package:flutter_getx_example/controllers/developer_controller.dart';
+import 'package:flutter_getx_example/controllers/locale_controller.dart';
 
 import 'package:flutter_getx_example/models/Student.dart';
 
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
   var underText = "".obs;
-  DeveloperController developerController = Get.put(DeveloperController());
+
   var student = Student(name: "Merve", age: 22).obs;
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class HomePage extends StatelessWidget {
             const Divider(),
             //OBX Kullanımı
             Obx(() => Text(
-                "First Name : ${developerController.developer.firstName.value}")),
+                "First Name : ${Get.find<DeveloperController>().developer.firstName.value}")),
             //GetX Kullanımı
             GetX<DeveloperController>(
                 init: DeveloperController(),
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
                 }),
             TextButton(
               onPressed: () {
-                developerController.changeName();
+                Get.find<DeveloperController>().changeName();
               },
               child: const Text("Geliştiriciyi Değiştir"),
             ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_example/controllers/locale_controller.dart';
 import 'package:get/get.dart';
 
 class ButtonExamplePage extends StatelessWidget {
-  const ButtonExamplePage({Key? key}) : super(key: key);
+  ButtonExamplePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +12,8 @@ class ButtonExamplePage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("Button Example "),
-            Text("${Get.arguments}"),
+            Text("Button Örnek".tr),
+            Text("${Get.arguments}".tr),
           ],
         ),
       ),
@@ -70,7 +71,7 @@ class ButtonExamplePage extends StatelessWidget {
               onPressed: () {
                 Get.bottomSheet(
                   Container(
-                    color: Colors.white,
+                    color: Theme.of(context).backgroundColor,
                     child: Wrap(
                       children: <Widget>[
                         ListTile(
@@ -97,7 +98,19 @@ class ButtonExamplePage extends StatelessWidget {
               onPressed: () {
                 Get.back(result: "GetX Felfena");
               },
-              child: const Text("Go To Home"),
+              child: Text('anasayfayagit'.tr),
+            ),
+            TextButton(
+              onPressed: () {
+                Get.find<LocaleController>().changeLanguage("en", "US");
+              },
+              child: Text('Dili İngilizce Yap'.tr),
+            ),
+            TextButton(
+              onPressed: () {
+                Get.find<LocaleController>().changeLanguage("tr", "TR");
+              },
+              child: Text('Dili Türkçe Yap'.tr),
             ),
             Text("${Get.parameters['dil']} ${Get.parameters['bilgi']}"),
           ],
